@@ -8,15 +8,17 @@
         /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            background-image: url('fondo.jpg'); /* Fondo de página */
+            background-size: cover;
+            background-attachment: fixed;
+            color: #ffffff;
             margin: 0;
             padding: 0;
         }
 
         header {
-            background-color: #333;
-            color: #fff;
+            background-color: rgba(51, 51, 51, 0.8); /* Fondo semitransparente */
+           background-color: rgba(5, 28, 154, 0.488);
             padding: 20px;
             text-align: center;
         }
@@ -24,29 +26,31 @@
         nav {
             display: flex;
             justify-content: center;
-            background-color: #444;
+            background-color: rgba(68, 68, 68, 0.8); /* Fondo semitransparente */
             padding: 10px;
         }
 
         nav button {
             background-color: #555;
-            color: #fff;
+            color: hsl(197, 100%, 76%);
             border: none;
             padding: 10px 20px;
             margin: 0 10px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 19px;
+            transition: background-color 0.3s ease;
         }
 
         nav button:hover {
             background-color: #777;
+            animation: bounce 0.5s;
         }
 
         .container {
             padding: 20px;
             max-width: 800px;
-            margin: 0 auto;
-            background-color: #fff;
+            margin: 20px auto;
+            background-color: rgba(55, 0, 255, 0.334); /* Fondo semitransparente */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -59,8 +63,8 @@
         }
 
         h2 {
-            color: #333;
-            border-bottom: 2px solid #333;
+            color: #00fbff;
+            border-bottom: 2px solid #00bbff;
             padding-bottom: 10px;
         }
 
@@ -71,6 +75,14 @@
 
         ul li {
             margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        ul li.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         img {
@@ -78,10 +90,15 @@
             height: auto;
             display: block;
             margin: 20px 0;
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.1);
         }
 
         footer {
-            background-color: #333;
+            background-color: rgba(51, 51, 51, 0.8); /* Fondo semitransparente */
             color: #fff;
             text-align: center;
             padding: 10px 0;
@@ -90,20 +107,47 @@
             bottom: 0;
         }
 
-        /* Estilos específicos para la página de inicio */
-        #home {
-            text-align: center;
+        /* Animaciones CSS */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
-        #home img {
-            width: 200px;
-            margin: 20px auto;
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 5px #fff;
+            }
+            50% {
+                box-shadow: 0 0 20px #fff;
+            }
+            100% {
+                box-shadow: 0 0 5px #fff;
+            }
         }
 
-        /* Estilos específicos para la sección "About Me" */
-        #about img {
-            width: 200px;
-            margin: 20px 0;
+        .glow-on-hover {
+            transition: box-shadow 0.3s ease;
+        }
+
+        .glow-on-hover:hover {
+            animation: glow 1.5s infinite;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -126,7 +170,7 @@
     <!-- Página de inicio (Home) -->
     <div id="home" class="page active">
         <h2>Welcome to My Personal Website</h2>
-        <img src="luis_photo.jpg" alt="Foto de Luis Antonio">
+        <img src="imagen01.jpg" alt="Imagen de Resume" class="fade-in" style="width: 40%; display: block; margin: 0 auto;">
         <p>My name is Luis Antonio Casillas de la Cruz, I am 20 years old and I really like video games, I also enjoy music and watching hardware maintenance videos.</p>
         <p>I am a very outgoing guy who likes to talk and make friends wherever he goes, my favorite food is sushi rolls and I am currently studying software engineering.</p>
     </div>
@@ -134,27 +178,29 @@
     <!-- Sección Resume -->
     <div id="resume" class="page">
         <h2>Resume</h2>
+        <img src="imagen02.png" alt="Imagen de Resume" class="fade-in" style="width: 40%; display: block; margin: 0 auto;">
+
         <p>I am a calm person who enjoys being at home and playing video games while listening to music. I also really like editing videos and studying about new hardware technologies.</p>
         <h3>Education</h3>
         <ul>
-            <li>Office technician - CBTA 246 (2019-2022)</li>
+            <li class="visible">Office technician - CBTA 246 (2019-2022)</li>
         </ul>
         <h3>Work Experience</h3>
         <ul>
-            <li>Video and photo editor (April 2020 - Present)</li>
-            <li>Computer Repairman (April 2019 - Present)</li>
+            <li class="visible">Video and photo editor (April 2020 - Present)</li>
+            <li class="visible">Computer Repairman (April 2019 - Present)</li>
         </ul>
         <h3>Skills</h3>
         <ul>
-            <li>Video and photo editor ★★★★</li>
-            <li>Computer equipment repair ★★★★</li>
-            <li>Know a little python ★</li>
-            <li>Handling carpentry work tools ★★★</li>
+            <li class="visible">Video and photo editor ★★★★</li>
+            <li class="visible">Computer equipment repair ★★★★</li>
+            <li class="visible">Know a little python ★</li>
+            <li class="visible">Handling carpentry work tools ★★★</li>
         </ul>
         <h3>Awards and Certifications</h3>
         <ul>
-            <li>Certified in Office Automation Technician (June 2022)</li>
-            <li>Certified in one of drywall (April 2019)</li>
+            <li class="visible">Certified in Office Automation Technician (June 2022)</li>
+            <li class="visible">Certified in one of drywall (April 2019)</li>
         </ul>
     </div>
 
@@ -162,37 +208,51 @@
     <div id="projects" class="page">
         <h2>Projects</h2>
         <ul>
-            <li><a href="https://github.com/UPEN-Thaitiel/html-intermediate-Aruzz121.git" target="_blank">01 html-intermediate-Aruzz121</a></li>
-            <li><a href="https://github.com/UPEN-Thaitiel/html-basics-Aruzz121.git" target="_blank">02 html-basics-Aruzz121</a></li>
-            <li><a href="https://github.com/UPEN-Thaitiel/css-introduction-team.html-esta-contigo.git" target="_blank">03 css-introduction-team.html</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1EIk0ARaFNfWRhOHAgWP8kOKn500OHqom?usp=drive_link" target="_blank">04 Measurement conversions</a></li>
-            <li><a href="https://drive.google.com/drive/folders/1he0H8jSo5u1BsUXQdXabzUD2fDfD3Qwl?usp=drive_link" target="_blank">05 Tic-tac-toe</a></li>
+            <li class="visible"><a href="https://github.com/UPEN-Thaitiel/html-intermediate-Aruzz121.git" target="_blank" style="color: #66ccff; font-weight: bold; text-decoration: none;">01 html-intermediate-Aruzz121</a></li>
+            <li class="visible"><a href="https://github.com/UPEN-Thaitiel/html-basics-Aruzz121.git" target="_blank" style="color: #66ccff; font-weight: bold; text-decoration: none;">02 html-basics-Aruzz121</a></li>
+            <li class="visible"><a href="https://github.com/UPEN-Thaitiel/javascript-introduction-Aruzz121" target="_blank" style="color: #66ccff; font-weight: bold; text-decoration: none;">03 javascript-introduction</a></li>
+            <li class="visible"><a href="https://drive.google.com/drive/folders/1Eik0ARaFNfWRhOHAgWP8kOKn50OQHqom?usp=sharing" target="_blank" style="color: #66ccff; font-weight: bold; text-decoration: none;">04 Measurement conversions</a></li>
+            <li class="visible"><a href="https://drive.google.com/drive/folders/1heOH8jSo5u1BsUXOdXabzUD2fDfD3Qwl?usp=sharing" target="_blank" style="color: #66ccff; font-weight: bold; text-decoration: none;">05 Tic-tac-toe</a></li>
         </ul>
+        <img src="imagen03.png" alt="Imagen de Resume" class="fade-in" style="width: 100%; display: block; margin: 0 auto;">
     </div>
+    
 
     <!-- Sección About Me -->
     <div id="about" class="page">
         <h2>About Me</h2>
-        <img src="luis_photo.jpg" alt="Foto de Luis Antonio">
         <p>This is a summary of the most important things in my life.</p>
-        <h3>Personal Information</h3>
+        <img src="imagen04.jpg" alt="Imagen de Resume" class="fade-in" style="width: 60%; display: block; margin: 0 auto;">
+        <h3>Likes:</h3>
         <ul>
-            <li>Date of birth: April 27, 2004</li>
-            <li>Born in Tepic, Nayarit, Mexico</li>
-            <li>Currently lives in La Cantera, Nayarit</li>
-            <li>Last grade of studies: high school</li>
-            <li>Study at high school: Centro de Bachillerato</li>
+            <li class="visible">I like jazz music</li>
+            <li class="visible">I like Chinese food</li>
+            <li class="visible">I like video games</li>
+            <li class="visible">I like podcasts</li>
+            <li class="visible">I also like swimming</li>
         </ul>
-        <h3>Jobs I have worked in</h3>
+        <h3>Personal Information:</h3>
         <ul>
-            <li>Furniture creation with drywall and wood</li>
-            <li>Call center job at Megacable</li>
-            <li>I know how to maintain electronic equipment</li>
-            <li>Video editing job</li>
-            <li>Work in a restaurant</li>
-            <li>Team leadership skills</li>
-            <li>Work in a computer equipment repair center</li>
-            <li>I know a little programming</li>
+            <li class="visible">Date of birth: April 27, 2004</li>
+            <li class="visible">Born in Tepic, Nayarit, Mexico</li>
+            <li class="visible">Currently lives in La Cantera, Nayarit</li>
+            <li class="visible">Last grade of studies: high school</li>
+            <li class="visible">Study at high school: Centro de Bachillerato Tecnologico Agropecuario No. 246</li>
+        </ul>
+        <h3>Skills:</h3>
+        <ul>
+            <li class="visible">Video editing</li>
+            <li class="visible">Furniture creation with drywall and wood</li>
+            <li class="visible">I know how to maintain electronic equipment</li>
+            <li class="visible">Team leadership skills</li>
+            <li class="visible">I know a little programming</li>
+        </ul>
+        <h3>Jobs I have worked in:</h3>
+        <ul>
+            <li class="visible">Call center job at Megacable</li>
+            <li class="visible">Video editing job</li>
+            <li class="visible">Work in a restaurant</li>
+            <li class="visible">Work in a computer equipment repair center</li>
         </ul>
     </div>
 
@@ -200,17 +260,18 @@
     <div id="contact" class="page">
         <h2>Contact Me</h2>
         <ul>
-            <li>Phone Number: +52 311 679 502</li>
-            <li>Facebook: Luis Antonio Casillas</li>
-            <li>Email: Luisant12100107manchas@gmail.com</li>
-            <li>Discord: Artuzz121</li>
-            <li>GitHub: Artuzz121</li>
+            <img src="imagen05.png" alt="Imagen de Resume" class="fade-in" style="width: 70%; display: block; margin: 0 auto;">
+            <li class="visible">Phone Number: +52 311 679 502</li>
+            <li class="visible">Facebook: Luis Antonio Casillas</li>
+            <li class="visible">Email: Luisant12100107manchas@gmail.com</li>
+            <li class="visible">Discord: Artuzz121</li>
+            <li class="visible">GitHub: Artuzz121</li>
         </ul>
     </div>
 </div>
 
 <footer>
-    <p>&copy; 2023 Luis Antonio Casillas de la Cruz</p>
+    <p>&copy; 2025 Luis Antonio Casillas de la Cruz</p>
 </footer>
 
 <script>
@@ -222,7 +283,32 @@
 
         // Muestra la página seleccionada
         document.getElementById(pageId).classList.add('active');
+
+        // Animación de fade-in para los elementos de la lista
+        const listItems = document.querySelectorAll(`#${pageId} ul li`);
+        listItems.forEach((item, index) => {
+            setTimeout(() => {
+                item.classList.add('visible');
+            }, index * 200);
+        });
     }
+
+    // Animación de bounce para los botones de navegación
+    const navButtons = document.querySelectorAll('nav button');
+    navButtons.forEach(button => {
+        button.addEventListener('mouseover', () => {
+            button.style.animation = 'bounce 0.5s';
+        });
+        button.addEventListener('mouseout', () => {
+            button.style.animation = '';
+        });
+    });
+
+    // Animación de glow para los enlaces
+    const links = document.querySelectorAll('a');
+    links.forEach(link => {
+        link.classList.add('glow-on-hover');
+    });
 </script>
 
 </body>
